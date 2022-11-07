@@ -9,6 +9,7 @@ import Blog from './Components/Pages/Blog/Blog';
 import AddaPackage from './Components/Pages/AddaPackage/AddaPackage';
 import Login from './Components/Pages/Login/Login';
 import Register from './Components/Pages/Register/Register';
+import Terms from './Components/Pages/Terms/Terms';
 
 
 
@@ -41,6 +42,10 @@ function App() {
         {
           path: '/register',
           element: <Register></Register>
+        },
+        {
+          path: '/terms-conditions',
+          element:<Terms></Terms>
         },
       ]
     }
