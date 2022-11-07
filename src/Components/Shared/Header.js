@@ -17,8 +17,8 @@ const Header = () => {
                         <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/packages">Packages</NavLink>
                         <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/blog">Blog</NavLink>
                         <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/add-a-package">Add a Package</NavLink>
-                        <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/">Login</NavLink>
-                        <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/">Register</NavLink>
+                        <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/login">Login</NavLink>
+                        <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/register">Register</NavLink>
                         <NavLink className="text-decoration-none px-3 fw-bolder text-black" >Logout</NavLink>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
