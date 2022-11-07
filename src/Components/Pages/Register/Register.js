@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
+    const [accept, setAccept] = useState(false);
+    const handleBtn = e => {
+        setAccept(e.target.checked)
+    }
+
     return (
         <div className="container py-4">
             <div className="row">
@@ -26,10 +31,10 @@ const Register = () => {
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Password" />
                             </Form.Group>
-                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Group className="mb-3" onClick={handleBtn} controlId="formBasicCheckbox">
                                 <Form.Check className='d-inline-block' type="checkbox" label="Accept Our" /> <Link className='text-decoration-none' to="/terms-conditions">Terms and Conditions</Link>
                             </Form.Group>
-                            <Button className='bg-white mt-2 w-100 fw-bolder text-black' type="submit">
+                            <Button disabled={!accept} className='bg-white mt-2 w-100 fw-bolder text-black' type="submit">
                                 Register
                             </Button>
                         </Form>
