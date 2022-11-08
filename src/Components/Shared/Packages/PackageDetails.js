@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../UserContext/AuthProvicer';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Comments from '../Comments';
 
 
 
@@ -13,16 +14,26 @@ const PackageDetails = () => {
     const { user } = useContext(AuthContext)
     const packageData = useLoaderData();
     const [allpackages, setpackages] = useState([])
+    const [allCommetns, setComments] = useState([])
+    const [reload, setReload] = useState(false)
     const { _id, name, img, description, price, ratings } = packageData
     useEffect(() => {
         fetch('http://localhost:5000/packages')
             .then(res => res.json())
             .then(data => setpackages(data))
     }, [])
-    const submitReview = (e) => {
+    useEffect(() => {
+        fetch(`http://localhost:5000/post-review/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                setComments(data)
+            })
+            .catch(err => console.log(err.message))
+    }, [])
+    const SubmitReview = (e) => {
         e.preventDefault();
         const author = e.target.reviewname.value;
-        const img = user?.img || 'blank.png';
+        const img = user?.photoURL || 'blank.png';
         const packageId = _id;
         const email = user?.email;
         const comments = e.target.comments.value;
@@ -38,7 +49,11 @@ const PackageDetails = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    toast.success('Review shared successfully')
+                    e.target.reset()
+                    toast.success('Review shared successfully', {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                    setReload(!reload)
                 }
             })
     }
@@ -82,10 +97,10 @@ const PackageDetails = () => {
                         </div>
                         <div className="review-and-see-reviews mt-3">
                             <div className="reviews">
-
+                                {allCommetns.length > 0 ? allCommetns.map(singleComments => <Comments commentData={singleComments}></Comments>) : 'No Comment for this'}
                             </div>
                             <div className="add-review">
-                                <Form onSubmit={submitReview}>
+                                <Form onSubmit={SubmitReview}>
                                     <div className="row">
                                         <div className="col-md-6">
                                             <Form.Group className="mb-3" controlId="formBasicEmail22">
