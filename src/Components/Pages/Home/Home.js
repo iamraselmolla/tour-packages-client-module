@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Packages from '../../Shared/Packages/Packages';
 import Banner from './Banner';
+import MobileSection from './MobileSection';
 import TouristsPlace from './TouristsPlace';
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+            <MobileSection></MobileSection>
             <TouristsPlace></TouristsPlace>
         </>
     );

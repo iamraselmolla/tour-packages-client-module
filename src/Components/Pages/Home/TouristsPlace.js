@@ -29,7 +29,7 @@ const TouristsPlace = () => {
         },
     ]
     return (
-        <section className='py-5 bg-light'>
+        <section className='py-5'>
           <div className="container">
           <div className="row text-center">
                 <div className="px-2 d-inline-block py-2 text-white rounded bg-black">
