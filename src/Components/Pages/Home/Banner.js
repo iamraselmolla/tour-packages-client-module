@@ -1,6 +1,7 @@
 import { Button } from 'bootstrap';
 import React from 'react';
 import { FaUmbrella, FaPlane, FaCar, FaBed } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
 const Banner = () => {
@@ -34,8 +35,8 @@ const Banner = () => {
                                 </div>
                             </div>
                             <div className=" mt-4">
-                                <button className="bg-white btn py-2 px-3 fw-bolder mx-2">See Packages</button>
-                                <button className="bg-white btn py-2 px-3 fw-bolder mx-2">Check Reviews</button>
+                                <Link to="/packages"> <button className="bg-white btn py-2 px-3 fw-bolder mx-2">See Packages</button>
+                                </Link>
                             </div>
                         </div>
                     </div>

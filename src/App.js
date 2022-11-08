@@ -11,6 +11,7 @@ import Login from './Components/Pages/Login/Login';
 import Register from './Components/Pages/Register/Register';
 import Terms from './Components/Pages/Terms/Terms';
 import Allpackages from './Components/Shared/Packages/Allpackages';
+import PackageDetails from './Components/Shared/Packages/PackageDetails';
 
 
 
@@ -36,7 +37,7 @@ function App() {
         },
         {
           path: '/packages/:id',
-          element: <h1>Hello</h1>,
+          element: <PackageDetails></PackageDetails>,
           loader: ({params}) => {
             return fetch(`http://localhost:5000/packages/${params.id}`)
           }
