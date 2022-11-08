@@ -1,16 +1,27 @@
 import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../UserContext/AuthProvicer';
 import {GoogleAuthProvider} from 'firebase/auth'
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
     const googleProvider = new GoogleAuthProvider();
     const { loginWithGoogle, login } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 const googleLogin = () => {
     loginWithGoogle(googleProvider)
-    .then(res => console.log(res.user))
+    .then(res => {
+        toast.success("Login With Google Successfully!", {
+            position: toast.POSITION.TOP_CENTER
+          })
+        navigate(from, { replace: true });
+    })
     .catch(err => console.log(err.message))
 }
     return (

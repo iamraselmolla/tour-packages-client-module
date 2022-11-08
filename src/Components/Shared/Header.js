@@ -5,9 +5,19 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../UserContext/AuthProvicer';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Header = () => {
-    const {user} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut()
+        .then(() => toast.error("Logout Successfully!", {
+            position: toast.POSITION.TOP_CENTER
+          }))
+        .catch(() => {})
+    }
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -18,21 +28,21 @@ const Header = () => {
                         <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/">Home</NavLink>
                         <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/packages">Packages</NavLink>
                         <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/blog">Blog</NavLink>
-                       {user &&  <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/add-a-package">Add a Package</NavLink>}
+                        {user && <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/add-a-package">Add a Package</NavLink>}
                         {!user && <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/login">Login</NavLink>}
                         {!user && <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/register">Register</NavLink>}
-                        <NavLink className="text-decoration-none px-3 fw-bolder text-black" >Logout</NavLink>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
-                            </NavDropdown.Item>
-                        </NavDropdown>
+
+                        {user && <img width="40px" height="40px" className='rounded-circle' src={user?.photoURL} />}
+                        {user && <NavDropdown id="basic-nav-dropdown">
+                            <div className='p-2'>Welcome {user?.displayName}</div>
+                            <Link className='text-decoration-none p-2 text-black d-block' to="/profile">
+                                Profile
+                            </Link>
+
+                            <div onClick={handleLogout} style={{cursor: 'pointer'}} className="p-2 d-block text-decoration-none outline-0">Logout</div>
+
+                        </NavDropdown>}
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>

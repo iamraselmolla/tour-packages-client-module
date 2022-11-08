@@ -12,6 +12,8 @@ import Register from './Components/Pages/Register/Register';
 import Terms from './Components/Pages/Terms/Terms';
 import Allpackages from './Components/Shared/Packages/Allpackages';
 import PackageDetails from './Components/Shared/Packages/PackageDetails';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -68,6 +70,7 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router}></RouterProvider>
+      <ToastContainer />
     </div>
   );
 }

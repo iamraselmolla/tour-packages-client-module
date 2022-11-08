@@ -22,6 +22,7 @@ const loginWithGoogle = (provicer) => {
     }
 
     const logOut = () => {
+        setLoading(true)
         return signOut(auth);
     }
 
