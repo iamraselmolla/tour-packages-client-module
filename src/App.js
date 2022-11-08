@@ -35,6 +35,13 @@ function App() {
           }
         },
         {
+          path: '/packages/:id',
+          element: <h1>Hello</h1>,
+          loader: ({params}) => {
+            return fetch(`http://localhost:5000/packages/${params.id}`)
+          }
+        },
+        {
           path: '/blog',
           element: <Blog></Blog>
         },
