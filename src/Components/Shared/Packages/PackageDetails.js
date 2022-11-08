@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaBinoculars,FaStar, FaStarHalf, FaHotel, FaBus, FaLuggageCart, FaCalendar } from 'react-icons/fa';
+import { FaBinoculars, FaStar, FaStarHalf, FaHotel, FaBus, FaLuggageCart, FaCalendar } from 'react-icons/fa';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { AuthContext } from '../../UserContext/AuthProvicer';
 
 
 const PackageDetails = () => {
+    const {user} = useContext(AuthContext)
     const packageData = useLoaderData();
     const [allpackages, setpackages] = useState([])
     const { _id, name, img, description, price, ratings } = packageData
-    useEffect(()=> {
+    useEffect(() => {
         fetch('http://localhost:5000/packages')
-        .then(res => res.json())
-        .then(data =>setpackages(data) )
-    },[])
+            .then(res => res.json())
+            .then(data => setpackages(data))
+    }, [])
     return (
         <section className='py-5'>
             <div className="container">
@@ -51,23 +55,43 @@ const PackageDetails = () => {
                         </div>
                     </div>
                     <div className="col-md-3 text-white rounded  bg-black">
-                       <div className="position-sticky py-4 top-0">
-                       <img src={img} className="img-fluid" alt="" />
-                       <h4 className="fw-bolder mt-2">
-                        {name}
-                       </h4>
-                       <h5 className="mt-3">
-                        Price: {price}
-                       </h5>
-                        <div className="review"> Review :
-                            <FaStar className='text-danger ms-1'></FaStar>
-                            <FaStar className='text-danger'></FaStar>
-                            <FaStar className='text-danger'></FaStar>
-                            <FaStar className='text-danger'></FaStar>
-                            <FaStarHalf className='text-danger me-1'></FaStarHalf>
-                            {ratings}
+                        <div className="position-sticky py-4 top-0">
+                            <img src={img} className="img-fluid" alt="" />
+                            <h4 className="fw-bolder mt-2">
+                                {name}
+                            </h4>
+                            <h5 className="mt-3">
+                                Price: {price}
+                            </h5>
+                            <div className="review"> Review :
+                                <FaStar className='text-danger ms-1'></FaStar>
+                                <FaStar className='text-danger'></FaStar>
+                                <FaStar className='text-danger'></FaStar>
+                                <FaStar className='text-danger'></FaStar>
+                                <FaStarHalf className='text-danger me-1'></FaStarHalf>
+                                {ratings}
+                            </div>
+                            <div className="checkout-form mt-4">
+                                <Form>
+                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                        <Form.Label>User Name</Form.Label>
+                                        <Form.Control defaultValue={user?.displayName} type="text" placeholder="User Name" />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                        <Form.Label>Address</Form.Label>
+                                        <Form.Control type="text" placeholder="Password" />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                        <Form.Label>Email address</Form.Label>
+                                        <Form.Control readOnly defaultValue={user?.email} type="email" placeholder="Enter email" />
+                                    </Form.Group>
+
+                                    <Button className='bg-white fw-bolder text-black w-100' variant="primary" type="submit">
+                                        Order Now
+                                    </Button>
+                                </Form>
+                            </div>
                         </div>
-                       </div>
                     </div>
                 </div>
             </div>
