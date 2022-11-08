@@ -15,6 +15,7 @@ import PackageDetails from './Components/Shared/Packages/PackageDetails';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRouter from './Components/Routers/PrivateRouter';
+import ErrorPage from './Components/Pages/404/ErrorPage';
 
 
 
@@ -65,6 +66,10 @@ function App() {
           path: '/terms-conditions',
           element:<Terms></Terms>
         },
+        {
+          path: '*',
+          element: <ErrorPage></ErrorPage>
+        }
       ]
     }
   ])

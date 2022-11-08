@@ -26,6 +26,7 @@ const Login = () => {
     }
     const handleLoginIn = (e) => {
         e.preventDefault()
+        
         login(e.target.email.value, e.target.password.value)
         .then(res=> {
             toast.success("Login Successfully!", {
