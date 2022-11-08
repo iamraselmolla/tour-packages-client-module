@@ -1,12 +1,13 @@
 import React from 'react';
 import { FaBinoculars, FaHotel, FaBus, FaLuggageCart, FaCalendar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
 const Packages = ({ data }) => {
     const { _id, name, img, description, price, ratings } = data;
     console.log(img)
     return (
-        <div className="col-md-4  position-realtive">
+        <div className="col-md-4 my-3  position-realtive">
             <div className="position-absolute bg-black px-2 py-1 text-white rounded right-0">
                 {ratings}
             </div>
@@ -47,8 +48,9 @@ const Packages = ({ data }) => {
                     </span>
                 </div>
                </div>
-            <button className='btn py-2 mt-3 fw-bolder rounded-bottom bg-black text-white w-100 position-absoulate bottom-0'>See Details</button>
-            </div>
+          <Link>  <button className='btn py-2 mt-3 fw-bolder rounded-bottom bg-black text-white w-100 position-absoulate bottom-0'>See Details</button>
+            </Link>
+          </div>
         </div>
     );
 };

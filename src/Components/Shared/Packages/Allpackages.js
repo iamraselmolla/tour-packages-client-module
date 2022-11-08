@@ -12,7 +12,7 @@ const Allpackages = () => {
                         See my all Packages
                     </h2>
                 </div>
-                <div className="row">
+                <div className="row mt-2">
                     {data.map(singleData => <Packages key={singleData._id} data={singleData}></Packages>)}
                 </div>
             </div>
