@@ -1,10 +1,37 @@
 import React from 'react';
-import TouristsIconPack from './TouristsIconPack';
+import TouristsPlaces from './TouristsPlaces';
 
 const TouristsPlace = () => {
+    const imgArray = [
+        {
+            name: "RIO DE JANEIRO(Brazil)",
+            url: "https://i.ibb.co/Tw3VNDY/1.png"
+        },
+        {
+            name: "Rialto Bridge",
+            url: "https://i.ibb.co/cvvXBcK/2.png"
+        },
+        {
+            name: "Roatan, Bay Islands",
+            url: "https://i.ibb.co/gZR0qQ6/3.png"
+        },
+        {
+            name: "Agra Taj Mahal",
+            url: "https://i.ibb.co/BGC4chM/4.png"
+        },
+        {
+            name: "Nail Island",
+            url: "https://i.ibb.co/Kj2PSVQ/5.png"
+        },
+        {
+            name: "South India",
+            url: "https://i.ibb.co/9mxs6Fp/6.png"
+        },
+    ]
     return (
-        <section className='py-5 container'>
-            <div className="row text-center">
+        <section className='py-5 bg-light'>
+          <div className="container">
+          <div className="row text-center">
                 <div className="px-2 d-inline-block py-2 text-white rounded bg-black">
                 <h2 className="fs-1 fw-bold">
                     Top Tour Places in The World
@@ -15,49 +42,9 @@ const TouristsPlace = () => {
                 </div>
             </div>
             <div className="row mt-3">
-                <div className="col-md-6 col-lg-4 my-3">
-                    <img src="1.png" className='img-fluid rounded-top' alt="" srcset="" />
-                    <div className="bg-black rounded-bottom text-white py-3 px-2 d-flex justify-content-between">
-                       <span> <b>RIO DE JANEIRO</b> (Brazil) </span>
-                       <TouristsIconPack></TouristsIconPack>
-                    </div>
-                </div>
-                <div className="col-md-6 col-lg-4 my-3">
-                    <img src="2.png" className='img-fluid rounded-top' alt="" srcset="" />
-                    <div className="bg-black rounded-bottom text-white py-3 px-2 d-flex justify-content-between">
-                       <span> <b>RIO DE JANEIRO</b> (Brazil) </span>
-                       <TouristsIconPack></TouristsIconPack>
-                    </div>
-                </div>
-                <div className="col-md-6 col-lg-4 my-3">
-                    <img src="3.png" className='img-fluid rounded-top' alt="" srcset="" />
-                    <div className="bg-black rounded-bottom text-white py-3 px-2 d-flex justify-content-between">
-                       <span> <b>RIO DE JANEIRO</b> (Brazil) </span>
-                       <TouristsIconPack></TouristsIconPack>
-                    </div>
-                </div>
-                <div className="col-md-6 col-lg-4 my-3">
-                    <img src="4.png" className='img-fluid rounded-top' alt="" srcset="" />
-                    <div className="bg-black rounded-bottom text-white py-3 px-2 d-flex justify-content-between">
-                       <span> <b>RIO DE JANEIRO</b> (Brazil) </span>
-                       <TouristsIconPack></TouristsIconPack>
-                    </div>
-                </div>
-                <div className="col-md-6 col-lg-4 my-3">
-                    <img src="5.png" className='img-fluid rounded-top' alt="" srcset="" />
-                    <div className="bg-black rounded-bottom text-white py-3 px-2 d-flex justify-content-between">
-                       <span> <b>RIO DE JANEIRO</b> (Brazil) </span>
-                       <TouristsIconPack></TouristsIconPack>
-                    </div>
-                </div>
-                <div className="col-md-6 col-lg-4 my-3">
-                    <img src="6.png" className='img-fluid rounded-top' alt="" srcset="" />
-                    <div className="bg-black rounded-bottom text-white py-3 px-2 d-flex justify-content-between">
-                       <span> <b>RIO DE JANEIRO</b> (Brazil) </span>
-                       <TouristsIconPack></TouristsIconPack>
-                    </div>
-                </div>
+                {imgArray.map(imgSingle => <TouristsPlaces key={imgSingle.url} info={imgSingle}></TouristsPlaces>)}
             </div>
+          </div>
         </section>
     );
 };
