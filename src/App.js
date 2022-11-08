@@ -14,6 +14,7 @@ import Allpackages from './Components/Shared/Packages/Allpackages';
 import PackageDetails from './Components/Shared/Packages/PackageDetails';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRouter from './Components/Routers/PrivateRouter';
 
 
 
@@ -39,7 +40,7 @@ function App() {
         },
         {
           path: '/packages/:id',
-          element: <PackageDetails></PackageDetails>,
+          element: <PrivateRouter><PackageDetails></PackageDetails></PrivateRouter>,
           loader: ({params}) => {
             return fetch(`http://localhost:5000/packages/${params.id}`)
           }
@@ -50,7 +51,7 @@ function App() {
         },
         {
           path: '/add-a-package',
-          element: <AddaPackage></AddaPackage>
+          element: <PrivateRouter><AddaPackage></AddaPackage></PrivateRouter>
         },
         {
           path: '/login',
