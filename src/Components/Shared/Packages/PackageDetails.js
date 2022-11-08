@@ -21,7 +21,7 @@ const PackageDetails = () => {
                             <h3 className="text-white">
                                 All Packages
                             </h3>
-                            {allpackages.map(sp => <h5><Link className='text-decoration-none' to={`/packages/${sp._id}`}>{sp.name}</Link></h5>)}
+                            {allpackages.map(sp => <h5 key={sp._id}><Link className='text-decoration-none' to={`/packages/${sp._id}`}>{sp.name}</Link></h5>)}
                         </div>
                     </div>
                     <div className="col-md-6">

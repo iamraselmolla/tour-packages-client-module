@@ -35,8 +35,8 @@ const MobileSection = () => {
                             </div>
                         </div>
                         <div>
-                            <img src="android.png" alt="" srcset="" />
-                            <img src="apple.png" alt="" srcset="" />
+                            <img src="android.png" alt=""  />
+                            <img src="apple.png" alt=""  />
                         </div>
                     </div>
                 </div>

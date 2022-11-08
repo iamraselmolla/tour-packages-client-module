@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
+import { AuthContext } from '../../UserContext/AuthProvicer';
+import {GoogleAuthProvider} from 'firebase/auth'
 const Login = () => {
+    const googleProvider = new GoogleAuthProvider();
+    const { loginWithGoogle, login } = useContext(AuthContext);
+const googleLogin = () => {
+    loginWithGoogle(googleProvider)
+    .then(res => console.log(res.user))
+    .catch(err => console.log(err.message))
+}
     return (
         <div className="container py-4">
             <div className="row">
@@ -28,9 +37,9 @@ const Login = () => {
                         </Form>
                         <div className="login-with-googlke">
                             <h4 className="text-white mt-3 fw-bolder">
-                                Sign in using 
+                                Sign in using
                             </h4>
-                            <Button className='w-100 fw-bolder btn-danger'><FaGoogle></FaGoogle> Google</Button>
+                            <Button onClick={googleLogin} className='w-100 fw-bolder btn-danger'><FaGoogle></FaGoogle> Google</Button>
 
 
                         </div>
