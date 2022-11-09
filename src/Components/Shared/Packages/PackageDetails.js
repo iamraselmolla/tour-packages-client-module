@@ -17,6 +17,7 @@ const PackageDetails = () => {
     const packageData = useLoaderData();
     const [allpackages, setpackages] = useState([])
     const [allCommetns, setComments] = useState([])
+    const [showEdit, setEditShowHide] = useState(false)
     const [reload, setReload] = useState(false)
     const { _id, name, img, description, price, ratings } = packageData;
     useEffect(() => {
@@ -59,41 +60,42 @@ const PackageDetails = () => {
                 }
             })
     }
-const deleteComment = (id) => {
-   if(window.confirm('Are you want to delete this comment')){
-    fetch(`http://localhost:5000/post-review/${id}`,{
-        method: 'DELETE',
-        headers: {
+    const deleteComment = (id) => {
+        if (window.confirm('Are you want to delete this comment')) {
+            fetch(`http://localhost:5000/post-review/${id}`, {
+                method: 'DELETE',
+                headers: {
 
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount) {
+                        const remaining = allCommetns.filter(s => s._id !== id);
+                        setComments(remaining);
+                        toast.success('Comment deleted', {
+                            position: toast.POSITION.TOP_CENTER
+                        });
+                    }
+                })
         }
-    })
-    .then(res => res.json())
-    .then(data => {
-        const remaining = allCommetns.filter(s => s._id !== id);
-        setComments(remaining);
-        toast.success('Comment deleted', {
-            position: toast.POSITION.TOP_CENTER
-        });
-        console.log(data)
+    }
+ 
 
-    })
-   }
-
-}
     return (
         <section className='py-5'>
             <div className="container">
                 <div className="row">
-                     <div className="col-md-8">
+                    <div className="col-md-8">
                         <h2 className="fw-bolder text-white bg-black px-2 py-3 rounded mb-3 fs-1">
                             {name}
                         </h2>
                         <PhotoProvider>
                             <PhotoView src={img}>
-                            <img src={img} alt="" className='img-fluid' />
+                                <img src={img} alt="" className='img-fluid' />
                             </PhotoView>
                         </PhotoProvider>
-                        
+
                         <div className="d-flex mt-3 gap-4">
                             <span style={{ width: '60px', height: '60px' }} className='justify-content-center d-flex align-items-center text-center border border-2 rounded'>
                                 <FaBinoculars></FaBinoculars>
@@ -119,7 +121,8 @@ const deleteComment = (id) => {
                                 <h3 className="fw-bolder">
                                     This Service has {allCommetns.length >= 2 ? allCommetns.length + ' reviews' : allCommetns.length + ' review'}
                                 </h3>
-                                {allCommetns.length > 0 ? allCommetns.map(singleComments => <Comments deleteComment={deleteComment} commentData={singleComments}></Comments>) : 'No Comment for this'}
+                                {allCommetns.length > 0 ? 
+                                allCommetns.map(singleComments => <Comments key={singleComments._id} deleteComment={deleteComment} commentData={singleComments}></Comments>) : 'No Comment for this'}
                             </div>
                             <div className="add-review">
                                 <Form onSubmit={SubmitReview}>

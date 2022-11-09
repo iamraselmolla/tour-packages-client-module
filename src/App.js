@@ -16,6 +16,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRouter from './Components/Routers/PrivateRouter';
 import ErrorPage from './Components/Pages/404/ErrorPage';
+import EditComment from './Components/Shared/EditComment';
 
 
 
@@ -65,6 +66,13 @@ function App() {
         {
           path: '/terms-conditions',
           element:<Terms></Terms>
+        },
+        {
+          path: '/edit-comment/:id',
+          element: <EditComment></EditComment>,
+          loader: ({params}) => {
+            return fetch(`http://localhost:5000/edit-comment/${params.id}`)
+          }
         },
         {
           path: '*',

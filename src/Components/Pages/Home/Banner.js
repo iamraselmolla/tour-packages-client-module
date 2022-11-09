@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 
 const Banner = () => {
     return (
-        <section className='bg-dark py-5 text-white'>
+        <section className='bg-dark pt-5 text-white'>
             <div className="container">
                 <div className="row d-flex align-items-center">
-                    <div className="col-md-6 col-sm-12">
+                    <div className="col-md-8 col-sm-12">
                         <h1 className="text-white text-start fs-1 fw-bolder">Plan Your Travel with Best Tour Guid Now!
                         </h1>
                         <p className="mb-0 text-start">
@@ -40,8 +40,8 @@ const Banner = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 col-sm-12">
-                        <img src="banner.jpg" className='rounded img-fluid' alt="" />
+                    <div className="col-md-4 text-center col-sm-12">
+                        <img src="banner.gif" className='rounded img-fluid' alt="" />
                     </div>
                 </div>
             </div>
