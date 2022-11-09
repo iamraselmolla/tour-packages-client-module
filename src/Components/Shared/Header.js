@@ -7,6 +7,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../UserContext/AuthProvicer';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Header.css'
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -36,9 +37,7 @@ const Header = () => {
                         {user && <img width="40px" height="40px" className='rounded-circle' src={user?.photoURL} />}
                         {user && <NavDropdown id="basic-nav-dropdown">
                             <div className='p-2'>Welcome {user?.displayName}</div>
-                            <Link className='text-decoration-none p-2 text-black d-block' to="/profile">
-                                Profile
-                            </Link>
+                          
 
                             <div onClick={handleLogout} style={{cursor: 'pointer'}} className="p-2 d-block text-decoration-none outline-0">Logout</div>
 

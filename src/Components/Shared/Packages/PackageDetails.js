@@ -16,19 +16,17 @@ import useTitle from '../../hooks/Usetitle';
 const PackageDetails = () => {
     const { user } = useContext(AuthContext)
     const packageData = useLoaderData();
-    const [allpackages, setpackages] = useState([])
     const [allCommetns, setComments] = useState([])
-    const [showEdit, setEditShowHide] = useState(false)
     const [reload, setReload] = useState(false)
     const { _id, name, img, description, price, ratings } = packageData;
     useTitle(name)
+   
     useEffect(() => {
-        fetch('http://localhost:5000/packages')
-            .then(res => res.json())
-            .then(data => setpackages(data))
-    }, [])
-    useEffect(() => {
-        fetch(`http://localhost:5000/post-review/${_id}`)
+        fetch(`http://localhost:5000/post-review/${_id}`,{
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('tour-token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setComments(data)

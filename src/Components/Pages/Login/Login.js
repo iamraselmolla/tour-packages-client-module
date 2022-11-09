@@ -21,26 +21,43 @@ const Login = () => {
             .then(res => {
                 toast.success("Login With Google Successfully!", {
                     position: toast.POSITION.TOP_CENTER
-                })
+                });
                 navigate(from, { replace: true });
             })
             .catch(err => console.log(err.message))
     }
     const handleLoginIn = (e) => {
         e.preventDefault()
-        
+
         login(e.target.email.value, e.target.password.value)
-        .then(res=> {
-            toast.success("Login Successfully!", {
-                position: toast.POSITION.TOP_CENTER
+            .then(res => {
+                
+                const currentUser = {email: res.user.email}
+                // Get jwt token
+                fetch('http://localhost:5000/jwt',{
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                .then(res=> res.json())
+                .then(data => {
+                    localStorage.setItem('tour-token', data.token);
+                    toast.success("Login Successfully!", {
+                        position: toast.POSITION.TOP_CENTER
+                    })
+                    navigate(from, { replace: true });
+                })
+                
+
+                
             })
-            navigate(from, { replace: true });
-        })
-        .catch(err => {
-            toast.error(err.message, {
-                position: toast.POSITION.TOP_CENTER
+            .catch(err => {
+                toast.error(err.message, {
+                    position: toast.POSITION.TOP_CENTER
+                })
             })
-        })
     }
     return (
         <div className="container py-4">
@@ -64,7 +81,7 @@ const Login = () => {
                                 Login
                             </Button>
                         </Form>}
-                       {!user &&<div className="login-with-google">
+                        {!user && <div className="login-with-google">
                             <h4 className="text-white mt-3 fw-bolder">
                                 Sign in using
                             </h4>

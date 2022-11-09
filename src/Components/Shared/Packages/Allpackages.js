@@ -15,7 +15,7 @@ const Allpackages = () => {
                     </h2>
                 </div>
                 <div className="row mt-2">
-                    {data.map(singleData => <Packages key={singleData._id} data={singleData}></Packages>)}
+                    {data?.map(singleData => <Packages key={singleData._id} data={singleData}></Packages>)}
                 </div>
             </div>
         </section>

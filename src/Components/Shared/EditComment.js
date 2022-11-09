@@ -14,7 +14,7 @@ const EditComment = () => {
         fetch(`http://localhost:5000/edit-comment/${_id}`,{
             method: 'PUT',
             headers: {
-                'content-type': 'application/json',
+                'content-type': 'application/json'
             },
             body: JSON.stringify(updatedInfo)
         })

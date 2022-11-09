@@ -9,16 +9,23 @@ const Myreviews = () => {
     const [activity, setActivity] = useState([])
     useTitle('My Reviews')
     useEffect(() => {
-        fetch(`http://localhost:5000/my-review?email=${user?.email}`)
+        fetch(`http://localhost:5000/my-review?email=${user?.email}`,{
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('tour-token')}`
+            }
+        })
             .then(res => res.json())
-            .then(data => setActivity(data))
+            .then(data => {
+                console.log(data)
+                setActivity(data)
+            })
             .catch(err => console.log(err.message))
     }, [user?.email])
     return (
         <section className="container py-3">
             <div className="row">
             <h1 className="fw-bolder text-center">
-                           Total Activity {activity.length}
+                           Total Activity {activity?.length}
                         </h1>
             </div>
             <div className="row">
@@ -33,7 +40,7 @@ const Myreviews = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {activity.map(single => <SingleReview key={single._id} activityData={single}></SingleReview>)}
+                            {activity?.map(single => <SingleReview key={single._id} activityData={single}></SingleReview>)}
                         </tbody>
                     </Table>
                 </div>

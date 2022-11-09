@@ -36,7 +36,7 @@ function App() {
           path: '/services',
           element: <Allpackages></Allpackages>,
           loader: () => {
-            return fetch('http://localhost:5000/packages')
+            return fetch('http://localhost:5000/services')
           }
         },
         {
