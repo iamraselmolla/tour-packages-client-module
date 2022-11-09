@@ -59,7 +59,27 @@ const PackageDetails = () => {
                 }
             })
     }
+const deleteComment = (id) => {
+   if(window.confirm('Are you want to delete this comment')){
+    fetch(`http://localhost:5000/post-review/${id}`,{
+        method: 'DELETE',
+        headers: {
 
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        const remaining = allCommetns.filter(s => s._id !== id);
+        setComments(remaining);
+        toast.success('Comment deleted', {
+            position: toast.POSITION.TOP_CENTER
+        });
+        console.log(data)
+
+    })
+   }
+
+}
     return (
         <section className='py-5'>
             <div className="container">
@@ -99,7 +119,7 @@ const PackageDetails = () => {
                                 <h3 className="fw-bolder">
                                     This Service has {allCommetns.length >= 2 ? allCommetns.length + ' reviews' : allCommetns.length + ' review'}
                                 </h3>
-                                {allCommetns.length > 0 ? allCommetns.map(singleComments => <Comments commentData={singleComments}></Comments>) : 'No Comment for this'}
+                                {allCommetns.length > 0 ? allCommetns.map(singleComments => <Comments deleteComment={deleteComment} commentData={singleComments}></Comments>) : 'No Comment for this'}
                             </div>
                             <div className="add-review">
                                 <Form onSubmit={SubmitReview}>
