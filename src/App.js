@@ -1,10 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Main from './Components/Main';
 import Home from './Components/Pages/Home/Home';
-import Packages from './Components/Shared/Packages/Packages';
 import Blog from './Components/Pages/Blog/Blog';
 import AddaPackage from './Components/Pages/AddaPackage/AddaPackage';
 import Login from './Components/Pages/Login/Login';
@@ -17,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import PrivateRouter from './Components/Routers/PrivateRouter';
 import ErrorPage from './Components/Pages/404/ErrorPage';
 import EditComment from './Components/Shared/EditComment';
+import Myreviews from './Components/Pages/MyReviews/Myreviews';
 
 
 
@@ -34,7 +33,7 @@ function App() {
           }
         },
         {
-          path: '/packages',
+          path: '/services',
           element: <Allpackages></Allpackages>,
           loader: () => {
             return fetch('http://localhost:5000/packages')
@@ -42,7 +41,7 @@ function App() {
         },
         {
           path: '/packages/:id',
-          element: <PrivateRouter><PackageDetails></PackageDetails></PrivateRouter>,
+          element: <PackageDetails></PackageDetails>,
           loader: ({params}) => {
             return fetch(`http://localhost:5000/packages/${params.id}`)
           }
@@ -52,7 +51,7 @@ function App() {
           element: <Blog></Blog>
         },
         {
-          path: '/add-a-package',
+          path: '/add-a-service',
           element: <PrivateRouter><AddaPackage></AddaPackage></PrivateRouter>
         },
         {
@@ -66,6 +65,10 @@ function App() {
         {
           path: '/terms-conditions',
           element:<Terms></Terms>
+        },
+        {
+          path: '/my-reviews',
+          element:<PrivateRouter><Myreviews></Myreviews></PrivateRouter>
         },
         {
           path: '/edit-comment/:id',

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Navigate, useLoaderData, useLocation } from 'react-router-dom';
+import { Navigate, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useTitle from '../hooks/Usetitle';
 
 const EditComment = () => {
-    const { comments, _id } = useLoaderData();  
+    const { comments, _id } = useLoaderData(); 
+    useTitle('Edit comment')
     const handleUpdate = (e) => {
         e.preventDefault();
         const updateComment = e.target.editedcomments.value;
@@ -22,7 +24,6 @@ const EditComment = () => {
                 toast.success('Updated comment successfully',{
                     position: toast.POSITION.TOP_CENTER
                 });
-               
             }
         })
     }

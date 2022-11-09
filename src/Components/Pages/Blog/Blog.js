@@ -1,8 +1,10 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import useTitle from '../../hooks/Usetitle';
 
 
 const Blog = () => {
+    useTitle('Blog')
     return (
         <div className="container py-5">
             <div className="row">

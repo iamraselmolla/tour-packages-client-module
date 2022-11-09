@@ -21,7 +21,7 @@ const Packages = ({ data }) => {
                 </h5>
                 <p className="mb-2">
                     {
-                        description.split(' ').length > 20 ? description.split(' ').slice(0, 20).join(' ') : description
+                        description.split(' ').length > 20 ? description.split(' ').slice(0, 20).join(' ') + ' ...' : description
                     }
                 </p>
                 <div className="d-flex gap-4">

@@ -5,11 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../UserContext/AuthProvicer';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTitle from '../../hooks/Usetitle';
 
 const Register = () => {
     const {createUser,updateInfo, user} = useContext(AuthContext);
     const navigate = useNavigate()
     const [accept, setAccept] = useState(false);
+    useTitle('Register')
     const handleBtn = e => {
         setAccept(e.target.checked)
     }

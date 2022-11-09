@@ -35,7 +35,7 @@ const Banner = () => {
                                 </div>
                             </div>
                             <div className=" mt-4">
-                                <Link to="/packages"> <button className="bg-white btn py-2 px-3 fw-bolder mx-2">See Packages</button>
+                                <Link to="/services"> <button className="bg-white btn py-2 px-3 fw-bolder mx-2">See All Services</button>
                                 </Link>
                             </div>
                         </div>

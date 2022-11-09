@@ -1,6 +1,8 @@
 import React from 'react';
+import useTitle from '../../hooks/Usetitle';
 
 const Terms = () => {
+  useTitle('Terms and Conditions')
     return (
       <div className="container py-5 text-start">
         <div className="row">

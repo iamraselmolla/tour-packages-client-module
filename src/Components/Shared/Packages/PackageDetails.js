@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Comments from '../Comments';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import useTitle from '../../hooks/Usetitle';
 
 
 
@@ -20,6 +21,7 @@ const PackageDetails = () => {
     const [showEdit, setEditShowHide] = useState(false)
     const [reload, setReload] = useState(false)
     const { _id, name, img, description, price, ratings } = packageData;
+    useTitle(name)
     useEffect(() => {
         fetch('http://localhost:5000/packages')
             .then(res => res.json())
@@ -122,9 +124,9 @@ const PackageDetails = () => {
                                     This Service has {allCommetns.length >= 2 ? allCommetns.length + ' reviews' : allCommetns.length + ' review'}
                                 </h3>
                                 {allCommetns.length > 0 ? 
-                                allCommetns.map(singleComments => <Comments key={singleComments._id} deleteComment={deleteComment} commentData={singleComments}></Comments>) : 'No Comment for this'}
+                                allCommetns.map(singleComments => <Comments key={singleComments._id} deleteComment={deleteComment} commentData={singleComments}></Comments>) : ''}
                             </div>
-                            <div className="add-review">
+                            {user && <div className="add-review">
                                 <Form onSubmit={SubmitReview}>
                                     <div className="row">
                                         <div className="col-md-6">
@@ -141,14 +143,15 @@ const PackageDetails = () => {
                                         </div>
                                         <Form.Group className="mb-3" controlId="formBasicEmail23233">
                                             <Form.Label>Comments</Form.Label>
-                                            <Form.Control name="comments" placeholder='Write your comments here' as="textarea" />
+                                            <Form.Control name="comments" required placeholder='Write your comments here' as="textarea" />
                                         </Form.Group>
                                     </div>
                                     <Button className='w-100 bg-black fs-5 fw-bolder text-white py-3 ' type="submit">
                                         Share Review
                                     </Button>
                                 </Form>
-                            </div>
+                            </div>}
+                            {!user && <h4 className='fw-bolder'>You are not logged in. Please <Link to="/login">Login</Link> first to leave review</h4>}
                         </div>
                     </div>
                     <div className="col-md-4 text-white rounded  bg-black">

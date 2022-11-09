@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import useTitle from '../../hooks/Usetitle';
 import Packages from '../../Shared/Packages/Packages';
 import Banner from './Banner';
 import MobileSection from './MobileSection';
@@ -7,6 +8,7 @@ import TouristsPlace from './TouristsPlace';
 
 const Home = () => {
     const allPackages = useLoaderData();
+    useTitle('Home')
     return (
         <>
             <Banner></Banner>
@@ -21,8 +23,8 @@ const Home = () => {
                 </div>
                 <div className="row text-center">
                     <div className="col">
-                       <Link to="/packages"> <div className="btn bg-black py-3 mt-3 px-4 text-white fw-bold">
-                            See All Packages
+                       <Link to="/services"> <div className="btn bg-black py-3 mt-3 px-4 text-white fw-bold">
+                            See All Services
                         </div></Link>
                     </div>
                 </div>

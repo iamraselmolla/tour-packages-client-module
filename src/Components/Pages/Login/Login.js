@@ -7,11 +7,13 @@ import { AuthContext } from '../../UserContext/AuthProvicer';
 import { GoogleAuthProvider } from 'firebase/auth'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTitle from '../../hooks/Usetitle';
 const Login = () => {
     const googleProvider = new GoogleAuthProvider();
     const { loginWithGoogle, login, user } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
+    useTitle('Login')
 
     const from = location.state?.from?.pathname || '/';
     const googleLogin = () => {

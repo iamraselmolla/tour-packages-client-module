@@ -4,9 +4,11 @@ import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../UserContext/AuthProvicer';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTitle from '../../hooks/Usetitle';
 
 const AddaPackage = () => {
     const { user } = useContext(AuthContext)
+    useTitle('Add a Service')
     const hanldepackageSaveToDB = (e) => {
         e.preventDefault();
         const name = e.target.place.value;
@@ -63,7 +65,7 @@ const AddaPackage = () => {
                                 <Form.Control name="url" type="url" placeholder="Review" />
                             </Form.Group>
                             <Button className='bg-white border-0 fw-bolder text-black fw-bolder px-5 py-3' type="submit">
-                                Upload This Package
+                                Submit This Service
                             </Button>
                         </Form>
                     </div>
