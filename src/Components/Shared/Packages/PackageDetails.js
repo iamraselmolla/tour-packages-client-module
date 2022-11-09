@@ -22,11 +22,7 @@ const PackageDetails = () => {
     useTitle(name)
    
     useEffect(() => {
-        fetch(`http://localhost:5000/post-review/${_id}`,{
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('tour-token')}`
-            }
-        })
+        fetch(`http://localhost:5000/post-review/${_id}`)
             .then(res => res.json())
             .then(data => {
                 setComments(data)

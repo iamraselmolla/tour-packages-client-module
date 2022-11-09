@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from '../../UserContext/AuthProvicer';
+import { Button } from 'react-bootstrap';
 
 
 const SingleReview = ({ activityData }) => {
@@ -29,6 +30,7 @@ const SingleReview = ({ activityData }) => {
             </td>
             <td>{comments}</td>
             <td>Private Time</td>
+            <td><Link to={`/edit-comment/${_id}`}><Button className='bg-white text-black fw-bolder'>Edit Review</Button></Link></td>
         </tr>
     );
 };

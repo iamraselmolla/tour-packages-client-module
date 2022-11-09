@@ -37,6 +37,7 @@ const Myreviews = () => {
                                 <th>Service Information</th>
                                 <th>Review</th>
                                 <th>Time</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>

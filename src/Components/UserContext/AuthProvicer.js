@@ -10,11 +10,7 @@ const AuthProvicer = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [serviceItems, setservice] = useState();
     useEffect(() => {
-        fetch('http://localhost:5000/services',{
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('tour-token')}`
-            }
-        })
+        fetch('http://localhost:5000/services')
             .then(res => res.json())
             .then(data => {
                 setservice(data)
