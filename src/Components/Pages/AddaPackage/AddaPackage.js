@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../UserContext/AuthProvicer';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const AddaPackage = () => {
     const { user } = useContext(AuthContext)
     const hanldepackageSaveToDB = (e) => {
@@ -15,6 +16,7 @@ const AddaPackage = () => {
         const img = e.target.url.value;
         const email = user?.email;
         const packageInfo = { email, name, img, description, price, ratings };
+        // const insertTime = new TimeSt
         fetch('http://localhost:5000/packages', {
             method: 'POST',
             headers: {

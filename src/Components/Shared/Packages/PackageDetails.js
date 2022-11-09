@@ -7,6 +7,8 @@ import { AuthContext } from '../../UserContext/AuthProvicer';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Comments from '../Comments';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 
 
@@ -74,7 +76,12 @@ const PackageDetails = () => {
                         <h2 className="fw-bolder text-white bg-black px-2 py-3 rounded mb-3 fs-1">
                             {name}
                         </h2>
-                        <img src={img} alt="" className='img-fluid' />
+                        <PhotoProvider>
+                            <PhotoView src={img}>
+                            <img src={img} alt="" className='img-fluid' />
+                            </PhotoView>
+                        </PhotoProvider>
+                        
                         <div className="d-flex mt-3 gap-4">
                             <span style={{ width: '60px', height: '60px' }} className='justify-content-center d-flex align-items-center text-center border border-2 rounded'>
                                 <FaBinoculars></FaBinoculars>
