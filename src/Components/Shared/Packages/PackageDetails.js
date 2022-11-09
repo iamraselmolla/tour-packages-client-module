@@ -18,7 +18,7 @@ const PackageDetails = () => {
     const [allpackages, setpackages] = useState([])
     const [allCommetns, setComments] = useState([])
     const [reload, setReload] = useState(false)
-    const { _id, name, img, description, price, ratings } = packageData
+    const { _id, name, img, description, price, ratings } = packageData;
     useEffect(() => {
         fetch('http://localhost:5000/packages')
             .then(res => res.json())
@@ -31,7 +31,7 @@ const PackageDetails = () => {
                 setComments(data)
             })
             .catch(err => console.log(err.message))
-    }, [])
+    }, [reload])
     const SubmitReview = (e) => {
         e.preventDefault();
         const author = e.target.reviewname.value;
@@ -64,15 +64,7 @@ const PackageDetails = () => {
         <section className='py-5'>
             <div className="container">
                 <div className="row">
-                    <div className="col-md-3 rounded  bg-black">
-                        <div className="position-sticky py-4 px-2 rounded text-white top-0">
-                            <h3 className="text-white">
-                                All Packages
-                            </h3>
-                            {allpackages.map(sp => <h5 key={sp._id}><Link className='text-decoration-none' to={`/packages/${sp._id}`}>{sp.name}</Link></h5>)}
-                        </div>
-                    </div>
-                    <div className="col-md-6">
+                     <div className="col-md-8">
                         <h2 className="fw-bolder text-white bg-black px-2 py-3 rounded mb-3 fs-1">
                             {name}
                         </h2>
@@ -104,6 +96,9 @@ const PackageDetails = () => {
                         </div>
                         <div className="review-and-see-reviews mt-3">
                             <div className="reviews">
+                                <h3 className="fw-bolder">
+                                    This Service has {allCommetns.length >= 2 ? allCommetns.length + ' reviews' : allCommetns.length + ' review'}
+                                </h3>
                                 {allCommetns.length > 0 ? allCommetns.map(singleComments => <Comments commentData={singleComments}></Comments>) : 'No Comment for this'}
                             </div>
                             <div className="add-review">
@@ -133,7 +128,7 @@ const PackageDetails = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-3 text-white rounded  bg-black">
+                    <div className="col-md-4 text-white rounded  bg-black">
                         <div className="position-sticky py-4 top-0">
                             <img src={img} className="img-fluid" alt="" />
                             <h4 className="fw-bolder mt-2">

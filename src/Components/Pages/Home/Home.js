@@ -13,7 +13,7 @@ const Home = () => {
             <section className="py-5 container">
                 <div className="row">
                     <h2 className=" bg-black rounded text-center py-3 mb-3 fw-bolder text-white">
-                        See our Recent Tour Spot and Packages
+                        See My Recent Tour Spot and Packages
                     </h2>
                 </div>
                 <div className="row">

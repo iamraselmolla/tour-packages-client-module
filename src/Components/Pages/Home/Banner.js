@@ -10,10 +10,10 @@ const Banner = () => {
             <div className="container">
                 <div className="row d-flex align-items-center">
                     <div className="col-md-6 col-sm-12">
-                        <h1 className="text-white text-start fs-1 fw-bolder">Plan Your Travel Now!
+                        <h1 className="text-white text-start fs-1 fw-bolder">Plan Your Travel with Best Tour Guid Now!
                         </h1>
                         <p className="mb-0 text-start">
-                            Experience the various exciting tour and travel packages and Make hotel reservations, find vacation packages, search cheap hotels and events
+                            Experience the various exciting tour and travel with 5 year's of experinced Tour and Travel guide and management person.
                         </p>
                         <div className="features  mt-4">
                             <div className="d-flex text-center">

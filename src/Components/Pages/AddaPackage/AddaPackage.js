@@ -15,8 +15,8 @@ const AddaPackage = () => {
         const ratings = e.target.review.value;
         const img = e.target.url.value;
         const email = user?.email;
-        const packageInfo = { email, name, img, description, price, ratings };
-        // const insertTime = new TimeSt
+        const insertTime = new Date();
+        const packageInfo = { email, name, img, description, price, ratings, insertTime };
         fetch('http://localhost:5000/packages', {
             method: 'POST',
             headers: {

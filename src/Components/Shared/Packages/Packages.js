@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const Packages = ({ data }) => {
     const { _id, name, img, description, price, ratings } = data;
-    console.log(img)
     return (
         <div className="col-md-4 my-3  position-realtive">
             <div className="position-absolute bg-black px-2 py-1 text-white rounded right-0">
