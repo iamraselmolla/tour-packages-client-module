@@ -47,7 +47,7 @@ const Packages = ({ data }) => {
                     </span>
                 </div>
                </div>
-          <Link to={`/packages/${_id}`}>  <button className='btn py-2 mt-3 fw-bolder rounded-bottom bg-black text-white w-100 position-absoulate bottom-0'>See Details</button>
+          <Link to={`/services/${_id}`}>  <button className='btn py-2 mt-3 fw-bolder rounded-bottom bg-black text-white w-100 position-absoulate bottom-0'>See Details</button>
             </Link>
           </div>
         </div>

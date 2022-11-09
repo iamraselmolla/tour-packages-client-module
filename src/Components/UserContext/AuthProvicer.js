@@ -8,7 +8,15 @@ const auth = getAuth(app);
 const AuthProvicer = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [serviceItems, setservice] = useState();
+    useEffect(() => {
+        fetch('http://localhost:5000/services')
+            .then(res => res.json())
+            .then(data => {
+                setservice(data)
+            })
+            .catch(err => console.log(err.messages))
+    }, []);
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
@@ -47,6 +55,7 @@ const loginWithGoogle = (provicer) => {
         login,
         loginWithGoogle,
         updateInfo,
+        serviceItems,
         logOut
     }
 
