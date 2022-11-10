@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useTitle from '../../hooks/Usetitle';
 
 const AddaPackage = () => {
-    const { user } = useContext(AuthContext)
+    const { user,logOut } = useContext(AuthContext)
     useTitle('Add a Service')
     const hanldepackageSaveToDB = (e) => {
         e.preventDefault();
@@ -19,16 +19,23 @@ const AddaPackage = () => {
         const email = user?.email;
         const insertTime = new Date();
         const packageInfo = { email, name, img, description, price, ratings, insertTime };
-        fetch('http://localhost:5000/packages', {
+        fetch('http://localhost:5000/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('tour-token')}`
+
             },
             body: JSON.stringify(packageInfo)
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json();
+            })
             .then(data => {
-                if (data.acknowledged) {
+                if (data?.acknowledged) {
                     toast.success('Package added successfully')
                     e.target.reset()
                 }

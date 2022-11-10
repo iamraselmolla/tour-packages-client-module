@@ -29,7 +29,6 @@ const Login = () => {
                     body: JSON.stringify(currentUser)
                 })
                 .then(res=> {
-                    console.log(res)
                    return res.json();
                 })
                 .then(data => {
@@ -63,7 +62,6 @@ const Login = () => {
                     body: JSON.stringify(currentUser)
                 })
                 .then(res=> {
-                    console.log(res)
                     return res.json();
                 })
                 .then(data => {

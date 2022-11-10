@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Packages from '../../Shared/Packages/Packages';
 import { AuthContext } from '../../UserContext/AuthProvicer';
 
 const Myservices = () => {
@@ -6,17 +7,35 @@ const Myservices = () => {
     const {user, logOut} = useContext(AuthContext)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/added-services?email=${user?.email}`)
-        .then(res=>res.json())
+        fetch(`http://localhost:5000/added-services?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('tour-token')}`
+            }
+        })
+        .then(res=>{
+            if (res.status === 401 || res.status === 403) {
+                return logOut();
+            }
+            return res.json()
+        })
         .then(data => {
             
             return setPackages(data)
         })
         .catch(err => console.log(err.message))
-    },[allPackages])
+    },[user?.email])
     return (
-        <div>
+      <div className="section container py-5">
+        <div className="row">
+            <div className="h2 fw-bolder text-center text-white bg-black rounded py-3 mb-0">
+                {allPackages.length === 0 && "You didn't add no product"}
+                {allPackages?.length > 1 ? `You added ${allPackages.length} services` : `You added 1 service`}
+            </div>
         </div>
+        <div className="row">
+            {allPackages?.map(pack => <Packages key={pack._id} data={pack}></Packages>)}
+        </div>
+      </div>
     );
 };
 

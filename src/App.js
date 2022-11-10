@@ -73,7 +73,7 @@ function App() {
         },
         {
           path: '/my-services',
-          element:<Myservices></Myservices>
+          element:<PrivateRouter><Myservices></Myservices></PrivateRouter>
           },
         {
           path: '/edit-comment/:id',
