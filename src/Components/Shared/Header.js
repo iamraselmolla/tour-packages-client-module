@@ -31,6 +31,7 @@ const Header = () => {
                         <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/blog">Blog</NavLink>
                         {user && <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/add-a-service">Add a Service</NavLink>}
                         {user && <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/my-reviews">My Reviews</NavLink>}
+                        {user && <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/my-services">My Services</NavLink>}
                         {!user && <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/login">Login</NavLink>}
                         {!user && <NavLink className="text-decoration-none px-3 fw-bolder text-black" to="/register">Register</NavLink>}
 

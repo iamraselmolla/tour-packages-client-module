@@ -19,6 +19,27 @@ const Login = () => {
     const googleLogin = () => {
         loginWithGoogle(googleProvider)
             .then(res => {
+                const currentUser = {email: res.user?.email}
+                // Get jwt token
+                fetch('http://localhost:5000/jwt',{
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                .then(res=> {
+                    console.log(res)
+                   return res.json();
+                })
+                .then(data => {
+                    localStorage.setItem('tour-token', data.token);
+                    console.log(data)
+                    toast.success("Login Successfully!", {
+                        position: toast.POSITION.TOP_CENTER
+                    })
+                    navigate(from, { replace: true });
+                })
                 toast.success("Login With Google Successfully!", {
                     position: toast.POSITION.TOP_CENTER
                 });
@@ -32,7 +53,7 @@ const Login = () => {
         login(e.target.email.value, e.target.password.value)
             .then(res => {
                 
-                const currentUser = {email: res.user.email}
+                const currentUser = {email: res.user?.email}
                 // Get jwt token
                 fetch('http://localhost:5000/jwt',{
                     method: 'POST',
@@ -41,9 +62,13 @@ const Login = () => {
                     },
                     body: JSON.stringify(currentUser)
                 })
-                .then(res=> res.json())
+                .then(res=> {
+                    console.log(res)
+                    return res.json();
+                })
                 .then(data => {
                     localStorage.setItem('tour-token', data.token);
+                    console.log(data)
                     toast.success("Login Successfully!", {
                         position: toast.POSITION.TOP_CENTER
                     })

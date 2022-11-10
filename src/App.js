@@ -16,6 +16,7 @@ import PrivateRouter from './Components/Routers/PrivateRouter';
 import ErrorPage from './Components/Pages/404/ErrorPage';
 import EditComment from './Components/Shared/EditComment';
 import Myreviews from './Components/Pages/MyReviews/Myreviews';
+import Myservices from './Components/Pages/MyService/Myservices';
 
 
 
@@ -70,6 +71,10 @@ function App() {
           path: '/my-reviews',
           element:<PrivateRouter><Myreviews></Myreviews></PrivateRouter>
         },
+        {
+          path: '/my-services',
+          element:<Myservices></Myservices>
+          },
         {
           path: '/edit-comment/:id',
           element: <EditComment></EditComment>,

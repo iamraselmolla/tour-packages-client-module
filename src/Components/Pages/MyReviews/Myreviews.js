@@ -5,18 +5,22 @@ import SingleReview from './SingleReview';
 import Table from 'react-bootstrap/Table';
 const Myreviews = () => {
 
-    const { user } = useContext(AuthContext)
+    const { user,logOut } = useContext(AuthContext)
     const [activity, setActivity] = useState([])
     useTitle('My Reviews')
     useEffect(() => {
-        fetch(`http://localhost:5000/my-review?email=${user?.email}`,{
+        fetch(`http://localhost:5000/my-review?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('tour-token')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json()
+            })
             .then(data => {
-                console.log(data)
                 setActivity(data)
             })
             .catch(err => console.log(err.message))
@@ -24,14 +28,14 @@ const Myreviews = () => {
     return (
         <section className="container py-3">
             <div className="row">
-            <h1 className="fw-bolder text-center">
-                           Total Activity {activity?.length}
-                        </h1>
+                <h1 className="fw-bolder text-center">
+                    Total Activity {activity?.length}
+                </h1>
             </div>
             <div className="row">
                 <div className="col">
                     <Table striped bordered hover variant="dark">
-                        
+
                         <thead>
                             <tr>
                                 <th>Service Information</th>
@@ -41,7 +45,7 @@ const Myreviews = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {activity?.map(single => <SingleReview key={single._id} activityData={single}></SingleReview>)}
+                            {activity?.map(single => <SingleReview key={single?._id} activityData={single}></SingleReview>)}
                         </tbody>
                     </Table>
                 </div>
