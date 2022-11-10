@@ -36,7 +36,8 @@ const PackageDetails = () => {
         const packageId = _id;
         const email = user?.email;
         const comments = e.target.comments.value;
-        const reviewInfo = { packageId, author, email, img, comments };
+        const insertTime = new Date().getTime();
+        const reviewInfo = { packageId, author, email, img, comments,insertTime };
 
         fetch('http://localhost:5000/post-review', {
             method: 'POST',

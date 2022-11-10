@@ -17,7 +17,7 @@ const AddaPackage = () => {
         const ratings = e.target.review.value;
         const img = e.target.url.value;
         const email = user?.email;
-        const insertTime = new Date();
+        const insertTime = new Date().getTime();
         const packageInfo = { email, name, img, description, price, ratings, insertTime };
         fetch('http://localhost:5000/services', {
             method: 'POST',
@@ -69,7 +69,7 @@ const AddaPackage = () => {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Photo URL</Form.Label>
-                                <Form.Control name="url" type="url" placeholder="Review" />
+                                <Form.Control name="url" type="url" placeholder="Photo URL" />
                             </Form.Group>
                             <Button className='bg-white border-0 fw-bolder text-black fw-bolder px-5 py-3' type="submit">
                                 Submit This Service
