@@ -1,1 +1,3 @@
 have to redirect review page after login
+have to add spinner in services,login, register page
+have to add email.pass jwt token

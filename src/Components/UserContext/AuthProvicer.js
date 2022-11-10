@@ -56,6 +56,7 @@ const loginWithGoogle = (provicer) => {
         loginWithGoogle,
         updateInfo,
         serviceItems,
+        setLoading,
         logOut
     }
 

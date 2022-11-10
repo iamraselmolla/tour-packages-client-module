@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useTitle from '../../hooks/Usetitle';
 const Login = () => {
     const googleProvider = new GoogleAuthProvider();
-    const { loginWithGoogle, login, user } = useContext(AuthContext);
+    const { loginWithGoogle, login,logOut, user } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     useTitle('Login')
@@ -29,20 +29,20 @@ const Login = () => {
                     body: JSON.stringify(currentUser)
                 })
                 .then(res=> {
+                    if (res.status === 401 || res.status === 403) {
+                        return logOut();
+                    }
                    return res.json();
                 })
                 .then(data => {
                     localStorage.setItem('tour-token', data.token);
-                    console.log(data)
-                    toast.success("Login Successfully!", {
+                    navigate(from, { replace: true });
+                    toast.success("Login With Google Successfully!", {
                         position: toast.POSITION.TOP_CENTER
-                    })
+                    });
                     navigate(from, { replace: true });
                 })
-                toast.success("Login With Google Successfully!", {
-                    position: toast.POSITION.TOP_CENTER
-                });
-                navigate(from, { replace: true });
+               
             })
             .catch(err => console.log(err.message))
     }
@@ -62,16 +62,20 @@ const Login = () => {
                     body: JSON.stringify(currentUser)
                 })
                 .then(res=> {
-                    return res.json();
+                    if (res.status === 401 || res.status === 403) {
+                        return logOut();
+                    }
+                   return res.json();
                 })
                 .then(data => {
                     localStorage.setItem('tour-token', data.token);
-                    console.log(data)
-                    toast.success("Login Successfully!", {
+                    navigate(from, { replace: true });
+                    toast.success("Login Google Successfully!", {
                         position: toast.POSITION.TOP_CENTER
-                    })
+                    });
                     navigate(from, { replace: true });
                 })
+               
                 
 
                 

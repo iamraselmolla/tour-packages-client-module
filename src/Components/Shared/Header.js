@@ -14,9 +14,12 @@ const Header = () => {
 
     const handleLogout = () => {
         logOut()
-        .then(() => toast.error("Logout Successfully!", {
-            position: toast.POSITION.TOP_CENTER
-          }))
+        .then(() => {
+            toast.error("Logout Successfully!", {
+                position: toast.POSITION.TOP_CENTER
+              })
+            localStorage.removeItem('tour-token')
+        })
         .catch(() => {})
     }
     return (
