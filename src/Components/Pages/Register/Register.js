@@ -35,7 +35,6 @@ const handleCreateUser = (e) => {
               <div className="col-md-4 offset-md-4">
                     <div className="px-4 py-5 rounded bg-black">
                         <h3 className="text-white mb-4 text-center fw-bolder">
-                            {!user ? 'Create an account!' : 'You are currently Logged in here. Please logout first to register'}
                         </h3>
                         {!user && 
                         <Form onSubmit={handleCreateUser} className='text-white fw-bold text-start'>

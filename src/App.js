@@ -30,21 +30,21 @@ function App() {
           path: '/',
           element: <Home></Home>,
           loader: () => {
-            return fetch('http://localhost:5000/home')
+            return fetch('https://service-server-beryl.vercel.app/home')
           }
         },
         {
           path: '/services',
           element: <Allpackages></Allpackages>,
           loader: () => {
-            return fetch('http://localhost:5000/services')
+            return fetch('https://service-server-beryl.vercel.app/packages')
           }
         },
         {
           path: '/services/:id',
           element: <PackageDetails></PackageDetails>,
           loader: ({params}) => {
-            return fetch(`http://localhost:5000/services/${params.id}`)
+            return fetch(`https://service-server-beryl.vercel.app/packages/${params.id}`)
           }
         },
         {
@@ -79,7 +79,7 @@ function App() {
           path: '/edit-comment/:id',
           element: <EditComment></EditComment>,
           loader: ({params}) => {
-            return fetch(`http://localhost:5000/edit-comment/${params.id}`)
+            return fetch(`https://service-server-beryl.vercel.app/edit-comment/${params.id}`)
           }
         },
         {

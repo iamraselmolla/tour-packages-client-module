@@ -19,7 +19,7 @@ const Home = () => {
                     </h2>
                 </div>
                 <div className="row">
-                    {allPackages.map(packages => <Packages key={packages._id} data={packages}></Packages>)}
+                    {allPackages?.map(packages => <Packages key={packages._id} data={packages}></Packages>)}
                 </div>
                 <div className="row text-center">
                     <div className="col">

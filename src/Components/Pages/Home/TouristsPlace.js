@@ -42,7 +42,7 @@ const TouristsPlace = () => {
                 </div>
             </div>
             <div className="row mt-3">
-                {imgArray.map(imgSingle => <TouristsPlaces key={imgSingle.url} info={imgSingle}></TouristsPlaces>)}
+                {imgArray?.map(imgSingle => <TouristsPlaces key={imgSingle.url} info={imgSingle}></TouristsPlaces>)}
             </div>
           </div>
         </section>

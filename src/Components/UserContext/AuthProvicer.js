@@ -10,7 +10,7 @@ const AuthProvicer = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [serviceItems, setservice] = useState();
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://service-server-beryl.vercel.app/packages')
             .then(res => res.json())
             .then(data => {
                 setservice(data)

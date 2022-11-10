@@ -7,7 +7,7 @@ const MobileSection = () => {
             <div className="container">
                 <div className="row d-flex align-items-center">
                     <div className="col-md-6">
-                        <img src="mobile.png" className='img-fluid' alt="" />
+                        <img src="mobile.gif" className='img-fluid' alt="" />
                     </div>
                     <div className="col-md-6">
                         <h1 className="fw-bolder fs-1">

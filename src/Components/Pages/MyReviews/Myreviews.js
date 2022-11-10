@@ -11,7 +11,7 @@ const Myreviews = () => {
     const [activity, setActivity] = useState([])
     useTitle('My Reviews')
     useEffect(() => {
-        fetch(`http://localhost:5000/my-review?email=${user?.email}`, {
+        fetch(`https://service-server-beryl.vercel.app/my-review?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('tour-token')}`
             }
@@ -29,7 +29,7 @@ const Myreviews = () => {
     }, [user?.email]);
     const deleteComment = (id) => {
         if (window.confirm('Are you want to delete this comment')) {
-            fetch(`http://localhost:5000/post-review/${id}`, {
+            fetch(`https://service-server-beryl.vercel.app/post-review/${id}`, {
                 method: 'DELETE',
                 headers: {
 

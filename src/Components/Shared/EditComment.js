@@ -11,7 +11,7 @@ const EditComment = () => {
         e.preventDefault();
         const updateComment = e.target.editedcomments.value;
         const updatedInfo = {updateComment}
-        fetch(`http://localhost:5000/edit-comment/${_id}`,{
+        fetch(`https://service-server-beryl.vercel.app/edit-comment/${_id}`,{
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

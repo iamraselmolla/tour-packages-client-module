@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -9,19 +9,20 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useTitle from '../../hooks/Usetitle';
 const Login = () => {
+    const [loginLoader, setLoader] = useState(false)
     const googleProvider = new GoogleAuthProvider();
     const { loginWithGoogle, login,logOut, user } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
-    useTitle('Login')
-
     const from = location.state?.from?.pathname || '/';
+    useTitle('Login')
     const googleLogin = () => {
+
         loginWithGoogle(googleProvider)
             .then(res => {
                 const currentUser = {email: res.user?.email}
                 // Get jwt token
-                fetch('http://localhost:5000/jwt',{
+                fetch('https://service-server-beryl.vercel.app/jwt',{
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -40,7 +41,6 @@ const Login = () => {
                     toast.success("Login With Google Successfully!", {
                         position: toast.POSITION.TOP_CENTER
                     });
-                    navigate(from, { replace: true });
                 })
                
             })
@@ -51,10 +51,10 @@ const Login = () => {
 
         login(e.target.email.value, e.target.password.value)
             .then(res => {
-                
+                setLoader(true)
                 const currentUser = {email: res.user?.email}
                 // Get jwt token
-                fetch('http://localhost:5000/jwt',{
+                fetch('https://service-server-beryl.vercel.app/jwt',{
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -62,6 +62,7 @@ const Login = () => {
                     body: JSON.stringify(currentUser)
                 })
                 .then(res=> {
+                    
                     if (res.status === 401 || res.status === 403) {
                         return logOut();
                     }
@@ -69,11 +70,12 @@ const Login = () => {
                 })
                 .then(data => {
                     localStorage.setItem('tour-token', data.token);
+                    
                     navigate(from, { replace: true });
                     toast.success("Login Google Successfully!", {
                         position: toast.POSITION.TOP_CENTER
                     });
-                    navigate(from, { replace: true });
+                    setLoader(false)
                 })
                
                 
@@ -107,6 +109,7 @@ const Login = () => {
                             <Button className='bg-white mt-2 w-100 fw-bolder text-black' type="submit">
                                 Login
                             </Button>
+                            {loginLoader && <h2>loading...</h2>}
                         </Form>}
                         {!user && <div className="login-with-google">
                             <h4 className="text-white mt-3 fw-bolder">

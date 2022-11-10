@@ -19,7 +19,7 @@ const AddaPackage = () => {
         const email = user?.email;
         const insertTime = new Date().getTime();
         const packageInfo = { email, name, img, description, price, ratings, insertTime };
-        fetch('http://localhost:5000/services', {
+        fetch('https://service-server-beryl.vercel.app/packages', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

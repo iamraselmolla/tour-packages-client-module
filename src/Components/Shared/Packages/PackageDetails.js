@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { FaBinoculars, FaStar, FaStarHalf, FaHotel, FaBus, FaLuggageCart, FaCalendar } from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -20,9 +20,12 @@ const PackageDetails = () => {
     const [reload, setReload] = useState(false)
     const { _id, name, img, description, price, ratings } = packageData;
     useTitle(name)
-   
+    const navigate = useNavigate()
+    const location = useLocation();
+
+
     useEffect(() => {
-        fetch(`http://localhost:5000/post-review/${_id}`)
+        fetch(`https://service-server-beryl.vercel.app/post-review/${_id}`)
             .then(res => res.json())
             .then(data => {
                 setComments(data)
@@ -37,9 +40,9 @@ const PackageDetails = () => {
         const email = user?.email;
         const comments = e.target.comments.value;
         const insertTime = new Date().getTime();
-        const reviewInfo = { packageId, author, email, img, comments,insertTime };
-
-        fetch('http://localhost:5000/post-review', {
+        const reviewInfo = { packageId, author, email, img, comments, insertTime };
+     
+        fetch('https://service-server-beryl.vercel.app/post-review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -59,10 +62,10 @@ const PackageDetails = () => {
     }
     const deleteComment = (id) => {
         if (window.confirm('Are you want to delete this comment')) {
-            fetch(`http://localhost:5000/post-review/${id}`, {
+            fetch(`https://service-server-beryl.vercel.app/post-review/${id}`, {
                 method: 'DELETE',
                 headers: {
-
+                    'content-type': 'application/json'
                 }
             })
                 .then(res => res.json())
@@ -77,7 +80,12 @@ const PackageDetails = () => {
                 })
         }
     }
- 
+    const handleNavigate = () => {
+        if (!user?.email) {
+            navigate('/login', {state: { from: location },  replace: false});
+        }
+    }
+
 
     return (
         <section className='py-5'>
@@ -118,8 +126,8 @@ const PackageDetails = () => {
                                 <h3 className="fw-bolder">
                                     This Service has {allCommetns.length >= 2 ? allCommetns.length + ' reviews' : allCommetns.length + ' review'}
                                 </h3>
-                                {allCommetns.length > 0 ? 
-                                allCommetns.map(singleComments => <Comments key={singleComments._id} deleteComment={deleteComment} commentData={singleComments}></Comments>) : ''}
+                                {allCommetns.length > 0 ?
+                                    allCommetns?.map(singleComments => <Comments key={singleComments._id} deleteComment={deleteComment} commentData={singleComments}></Comments>) : ''}
                             </div>
                             {user && <div className="add-review">
                                 <Form onSubmit={SubmitReview}>
@@ -127,7 +135,7 @@ const PackageDetails = () => {
                                         <div className="col-md-6">
                                             <Form.Group className="mb-3" controlId="formBasicEmail22">
                                                 <Form.Label>Full name</Form.Label>
-                                                <Form.Control defaultValue={user?.displayName} name="reviewname" type="text" placeholder="Enter email" />
+                                                <Form.Control defaultValue={user?.displayName} name="reviewname" type="text" placeholder="Enter Name" />
                                             </Form.Group>
                                         </div>
                                         <div className="col-md-6">
@@ -146,7 +154,7 @@ const PackageDetails = () => {
                                     </Button>
                                 </Form>
                             </div>}
-                            {!user && <h4 className='fw-bolder'>You are not logged in. Please <Link to="/login">Login</Link> first to leave review</h4>}
+                            {!user && <h4 className='fw-bolder'>You are not logged in. Please <buttn className="btn-link text-primary" style={{cursor: 'pointer'}} onClick={handleNavigate}>Login</buttn> first to leave review</h4>}
                         </div>
                     </div>
                     <div className="col-md-4 text-white rounded  bg-black">
